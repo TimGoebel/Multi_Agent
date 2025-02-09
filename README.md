@@ -30,7 +30,7 @@ your_project/
 ## 📦 Installation
 ### **1️⃣ Clone the Repository**
 ```sh
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/TimGoebel/Multi_Agent.git
 cd your-repo
 ```
 
@@ -171,5 +171,5 @@ This project is licensed under the **MIT License**.
 ---
 
 ### 🔗 Connect with Me
-- **GitHub:** [your-username](https://github.com/your-username)
+- **GitHub:** [Timothy Goebel](https://github.com/TimGoebel)
 - **LinkedIn:** [Timothy Goebel](www.linkedin.com/in/timothygoebel)
