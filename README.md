@@ -172,4 +172,4 @@ This project is licensed under the **MIT License**.
 
 ### 🔗 Connect with Me
 - **GitHub:** [Timothy Goebel](https://github.com/TimGoebel)
-- **LinkedIn:** [Timothy Goebel](www.linkedin.com/in/timothygoebel)
+- **LinkedIn:** [Timothy Goebel](http://www.linkedin.com/in/timothygoebel)
