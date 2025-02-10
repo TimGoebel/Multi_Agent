@@ -17,6 +17,8 @@ your_project/
 │   ├── upload_an_Train.py      # Handles file upload and preprocessing
 │── fine_tune/
 │   ├── fine_tune.py            # Fine-tuning OpenAI models
+│── evaluate/
+│   ├── evaluate_model.py       # Evaulate OpenAI models to the new trained model
 │── chat/
 │   ├── chat_with_model.py      # AI chatbot interactions
 │── utils/
