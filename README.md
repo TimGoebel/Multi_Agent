@@ -5,6 +5,7 @@ This project is a **Streamlit-based AI Assistant** that allows users to **train,
 ## 📌 Features
 - **Upload and Process Data** (PDF, CSV, JSON)
 - **Preprocess Data** for fine-tuning
+- **evaluate model** for model evaluation tool
 - **Fine-tune AI Models** with OpenAI's API
 - **Multi-Agent AI Chat** with customizable prompts
 - **Restricted Words Filtering** to control AI responses
