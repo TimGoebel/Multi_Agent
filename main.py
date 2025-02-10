@@ -13,19 +13,19 @@ def main():
     restricted_list, model_list = load_restricted_words()
     base_model = st.sidebar.selectbox("Select Base Model for Fine-Tuning", options=model_list)
 
-    choice = st.sidebar.radio("Go to", ["Upload & Train", "Train Data", "Evaluate Model", "Chat with AI"])
+    choice = st.sidebar.radio("Go to", ["Upload & Process Data", "Train Model", "Evaluate Model", "Chat with AI"])
 
     if not api_key:
         st.sidebar.warning("Please enter your OpenAI API Key to proceed.")
         return
 
-    if choice == "Upload & Train":
+    if choice == "Upload & Process Data":
         df = upload_and_display()
         if df is not None:
             data = preprocess_data(df)
             if data is not None:
                 save_training_file(data)
-    elif choice == "Train Data":
+    elif choice == "Train Model":
         if st.button("Start Training"):
             fine_tune_model("training_data.jsonl", api_key, base_model)
     elif choice == "Evaluate Model":
