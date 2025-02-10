@@ -3,6 +3,7 @@ import openai
 import os
 import time
 import requests
+import json  # ✅ Import json module
 from openai import OpenAI
 
 def fine_tune_model(training_file, api_key, base_model, model_list=None):
@@ -48,6 +49,21 @@ def fine_tune_model(training_file, api_key, base_model, model_list=None):
             if job_status == "succeeded":
                 fine_tuned_model = status_data.fine_tuned_model or "Unknown"
                 st.success(f"Fine-tuning completed successfully! Model: {fine_tuned_model}")
+
+                # Update a local JSON file (e.g., "restricted_words.json") with the new model name.
+                if fine_tuned_model != "Unknown":
+                    try:
+                        with open("restricted_words.json", "r") as file:
+                            json_data = json.load(file)
+                    except (FileNotFoundError, json.JSONDecodeError):
+                        json_data = {"restricted_words": [], "model_list": []}
+                    
+                    if fine_tuned_model not in json_data.get("model_list", []):
+                        json_data["model_list"].append(fine_tuned_model)
+                    
+                    with open("restricted_words.json", "w") as file:
+                        json.dump(json_data, file, indent=4)
+
                 break
             elif job_status in ["failed", "cancelled"]:
                 st.error(f"Fine-tuning failed. Status: {job_status}")
