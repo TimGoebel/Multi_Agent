@@ -3,6 +3,7 @@ from upload_and_train.upload_an_Train import upload_and_display, preprocess_data
 from fine_tune.fine_tune import fine_tune_model
 from chat.chat_with_model import chat_with_model
 from utils.utils import load_restricted_words
+from evaluate.evaluate_model import evaluate_fine_tuned_model  # Import the new evaluation function
 
 def main():
     st.sidebar.title("Navigation")
@@ -11,8 +12,8 @@ def main():
     # Load restricted words and available models
     restricted_list, model_list = load_restricted_words()
     base_model = st.sidebar.selectbox("Select Base Model for Fine-Tuning", options=model_list)
-    
-    choice = st.sidebar.radio("Go to", ["Upload & Train", "Train Data", "Chat with AI"])
+
+    choice = st.sidebar.radio("Go to", ["Upload & Train", "Train Data", "Evaluate Model", "Chat with AI"])
 
     if not api_key:
         st.sidebar.warning("Please enter your OpenAI API Key to proceed.")
@@ -26,9 +27,18 @@ def main():
                 save_training_file(data)
     elif choice == "Train Data":
         if st.button("Start Training"):
-            fine_tune_model("training_data.jsonl", api_key, base_model, model_list)
+            fine_tune_model("training_data.jsonl", api_key, base_model)
+    elif choice == "Evaluate Model":
+        st.title("Evaluate Fine-Tuned Model")
+        # model_id = st.text_input("Enter Fine-Tuned Model ID:", help="Find this in your OpenAI fine-tuning results.")
+        model_id = st.selectbox("Enter Fine-Tuned Model ID:", options=model_list)
+        if st.button("Evaluate Model"):
+            if model_id:
+                evaluate_fine_tuned_model(api_key, base_model)
+            else:
+                st.warning("Please enter a valid Fine-Tuned Model ID.")
     elif choice == "Chat with AI":
-        chat_with_model(api_key, restricted_list, base_model)
+        chat_with_model(api_key, restricted_list, model_list)
 
 if __name__ == "__main__":
     main()
