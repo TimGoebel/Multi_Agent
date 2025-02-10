@@ -31,7 +31,7 @@ your_project/
 ### **1️⃣ Clone the Repository**
 ```sh
 git clone https://github.com/TimGoebel/Multi_Agent.git
-cd your-repo
+cd Multi_Agent
 ```
 
 ### **2️⃣ Set Up a Virtual Environment (Recommended)**
