@@ -2,7 +2,7 @@ import streamlit as st
 import re
 from openai import OpenAI
 
-def get_openai_response(prompt, api_key, restricted_list, base_model):
+def get_openai_response(prompt, api_key, restricted_list, chat_model):
     """
     Fetches a response from the OpenAI API using the ChatCompletion endpoint
     and filters out any restricted words.
@@ -10,7 +10,7 @@ def get_openai_response(prompt, api_key, restricted_list, base_model):
     client = OpenAI(api_key=api_key)
 
     response = client.chat.completions.create(
-        model=base_model,  
+        model=chat_model,  
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": prompt}
@@ -24,9 +24,10 @@ def get_openai_response(prompt, api_key, restricted_list, base_model):
         content = content.replace(word, "[REDACTED]")
     return content
 
-def chat_with_model(api_key, restricted_list, base_model):
+def chat_with_model(api_key, restricted_list, model_list):
     """Multi-Agent AI Assistant"""
     st.title("Multi-Agent AI Assistant 🤖")
+    chat_model = st.selectbox("Chat model selection:", options=model_list)
     topic = st.text_area("Enter your topic:")
 
     if "viral_hooks" not in st.session_state:
@@ -74,7 +75,7 @@ def chat_with_model(api_key, restricted_list, base_model):
         else:
             with st.spinner("Generating viral hooks..."):
                 viral_hook_prompt = f"{viral_hook_prompt_input} {topic}. {tone_setting}"
-                viral_hooks_raw = get_openai_response(viral_hook_prompt, api_key, restricted_list, base_model)
+                viral_hooks_raw = get_openai_response(viral_hook_prompt, api_key, restricted_list, chat_model)
                 st.session_state.viral_hooks = re.findall(r'\d+\.\s*(.*)', viral_hooks_raw)
                 st.session_state.viral_hooks = [hook.strip() for hook in st.session_state.viral_hooks if hook.strip()]
                 if not st.session_state.viral_hooks:
@@ -89,9 +90,9 @@ def chat_with_model(api_key, restricted_list, base_model):
                     article_prompt = f"{article_prompt_input} {st.session_state.selected_hook}. {tone_setting}"
                     social_media_prompt = f"{social_media_prompt_input} {st.session_state.selected_hook}. {tone_setting}"
                     story_prompt = f"{story_prompt_input} {st.session_state.selected_hook}. {tone_setting}"
-                    st.session_state.article = get_openai_response(article_prompt, api_key, restricted_list, base_model)
-                    st.session_state.social_media_posts = get_openai_response(social_media_prompt, api_key, restricted_list, base_model)
-                    st.session_state.short_story = get_openai_response(story_prompt, api_key, restricted_list, base_model)
+                    st.session_state.article = get_openai_response(article_prompt, api_key, restricted_list, chat_model)
+                    st.session_state.social_media_posts = get_openai_response(social_media_prompt, api_key, restricted_list, chat_model)
+                    st.session_state.short_story = get_openai_response(story_prompt, api_key, restricted_list, chat_model)
                     st.session_state.content_generated = True
 
     if st.session_state.content_generated:
