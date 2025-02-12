@@ -5,12 +5,14 @@ This project is a **Streamlit-based AI Assistant** that allows users to **train,
 ## 📌 Features
 - **Upload and Process Data** (PDF, CSV, JSON)
 - **Preprocess Data** for fine-tuning
-- **evaluate model** for model evaluation tool
+- **Evaluate Model** for model evaluation tool
 - **Fine-tune AI Models** with OpenAI's API
 - **Multi-Agent AI Chat** with customizable prompts
 - **Restricted Words Filtering** to control AI responses
+- **Vision-Language Model (VLM) for AI-powered image analysis** 🖼️
 
 ## 🏗️ Project Structure
+
 ```
 your_project/
 │── main.py                    # Main entry point for Streamlit app
@@ -22,6 +24,8 @@ your_project/
 │   ├── evaluate_model.py       # Evaulate OpenAI models to the new trained model
 │── chat/
 │   ├── chat_with_model.py      # AI chatbot interactions
+│── vlm/
+│   ├── text_vlm.py             # AI Vision AI agent
 │── utils/
 │   ├── __init__.py             # Marks `utils/` as a package
 │   ├── utils.py                # Contains helper functions
