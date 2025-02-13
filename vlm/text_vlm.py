@@ -5,11 +5,11 @@ import base64
 from io import BytesIO
 import os
 
-# 🔄 Function to encode image as base64 for GPT-4 Turbo
+# Function to encode image as base64 for GPT-4 Turbo
 def encode_image(image_bytes):
     return base64.b64encode(image_bytes).decode('utf-8')
 
-# 🤖 Function to analyze an uploaded image with GPT-4 Turbo
+# Function to analyze an uploaded image with GPT-4 Turbo
 def analyze_image_with_gpt4_turbo(image_path, prompt, api_key, base_model):
     client = openai.OpenAI(api_key=api_key)
     try:
@@ -34,11 +34,11 @@ def analyze_image_with_gpt4_turbo(image_path, prompt, api_key, base_model):
     except openai.OpenAIError as e:
         return f"❌ OpenAI API Error: {str(e)}"
 
-# ✅ FIXED FUNCTION WITHOUT CLIP
+# FIXED FUNCTION WITHOUT CLIP
 def vlm_gbt(api_key, base_model):
     """Vision-Language Model UI with GPT-4 Turbo"""
 
-    # 🎨 Streamlit UI
+    # Streamlit UI
     st.title("🖼️ Vision-Language Model with GPT-4 Turbo")
     st.write("Upload an image and enter a prompt to analyze it.")
 
@@ -56,6 +56,6 @@ def vlm_gbt(api_key, base_model):
             with st.spinner("🔎 Analyzing..."):
                 gpt4_response = analyze_image_with_gpt4_turbo(temp_path, prompt, api_key, base_model)
 
-            # 🔥 Display Results
+            # Display Results
             st.subheader("📖 GPT-4 Turbo Analysis")
             st.write(gpt4_response)
