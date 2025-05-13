@@ -177,6 +177,7 @@ Use the fine-tuned model in your AI assistant.
 
 ## 🏗️ Future Enhancements
 - Add **local model fine-tuning** support.
+- add **embedings**
 - Expand AI assistant **multi-modal capabilities**.
 - Integrate **vector search** for improved retrieval.
 
@@ -188,3 +189,4 @@ This project is licensed under the **MIT License**.
 ### 🔗 Connect with Me
 - **GitHub:** [Timothy Goebel](https://github.com/TimGoebel)
 - **LinkedIn:** [Timothy Goebel](http://www.linkedin.com/in/timothygoebel)
+
