@@ -95,9 +95,17 @@ To improve model quality, raw text is cleaned using the following techniques:
 ---
 
 ### **3️⃣ Text Chunking & Structuring**
+
 To prevent **mid-sentence breaks**, the extracted text is **split into meaningful units** using `spaCy`:
-- **NLP Sentence-Based Chunking:** Instead of breaking text arbitrarily at `chunk_size`, it ensures **semantic coherence**.
-- **Adaptive Chunking:** If a chunk exceeds `1000` characters, it is **split into smaller, logical parts**.
+
+* **NLP Sentence-Based Chunking:** Instead of breaking text arbitrarily at `chunk_size`, it ensures **semantic coherence**.
+* **Adaptive Chunking:** If a chunk exceeds `1000` characters, it is **split into smaller, logical parts**.
+
+The UI supports flexible chunking and measurement settings:
+
+* **Chunking Method:** Choose between Sentence-level or Paragraph-level segmentation.
+* **Measurement Type:** Select how chunk length is measured — by Character count or Token count.
+
 
 ---
 
